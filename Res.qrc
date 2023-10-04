@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/image">
+        <file>Avatar.png</file>
+        <file>quit.png</file>
+        <file>Chat.png</file>
+        <file>Event.png</file>
+    </qresource>
+</RCC>
