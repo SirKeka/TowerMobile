@@ -16,9 +16,11 @@ CppApplication {
         fileTags: ["qt.qml.qml", "qt.core.resource_data"]
         files: [
             "Main.qml",
+            "MyEventView.qml",
             "MyImg.qml",
             "MyLoginArea.qml",
             "MyRegisrationArea.qml",
+            "MySPresence.qml",
             "MyUserProfile.qml",
         ]
     }

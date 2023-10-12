@@ -12,7 +12,7 @@ Window {
     visible: true
     title: qsTr("Login Page")
 
-    readonly property var fontSize: 0.018
+    readonly property int fontSize: root.height * 0.018
 
     StackView {
         id: stackView
@@ -176,7 +176,7 @@ Window {
                 icon.source: "../image/quit.png"
                 background: Rectangle {
                     anchors.fill: parent
-                    color: uitBtn.down ? mainHead.color : mainHead.color
+                    color: quitBtn.down ? mainHead.color : mainHead.color
                 }
 
                 onClicked: stackView.pop()
@@ -190,10 +190,9 @@ Window {
             Item {
                 id: eventPage
 
-                ScrollView {
+                MyEventView {
+                    id: eventView
                     anchors.fill: parent
-
-
                 }
             }
 
