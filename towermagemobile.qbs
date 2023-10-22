@@ -8,6 +8,8 @@ CppApplication {
     files: [
         "Res.qrc",
         "RounImg.fsh",
+        "client.cpp",
+        "client.h",
         "main.cpp",
     ]
 
