@@ -7,6 +7,7 @@ Client::Client()
     m_pSocket = new QTcpSocket;
     connect (m_pSocket, &QTcpSocket::readyRead, this, &Client::slotReadyRead);
     connect (m_pSocket, &QTcpSocket::disconnected, m_pSocket, &QTcpSocket::deleteLater);
+    connect (m_pSocket, &QTcpSocket::errorOccurred, this, &Client::onError);
 }
 
 void Client::sendToServer(e_MsgType msgType, QVariantList input)
@@ -20,12 +21,12 @@ void Client::sendToServer(e_MsgType msgType, QVariantList input)
     out<<input;
     out.device()->seek(0);
     out<<qint16(data.size()-sizeof(qint16));
-    m_pSocket->write(data);
+    qDebug()<<m_pSocket->write(data);
 }
 
-void Client::connectToServer(QString &hostName, qint16 port)
+void Client::connectToServer(QHostAddress hostName, qint16 port)
 {
-    m_pSocket->connectToHost(hostName, port);
+    m_pSocket->connectToHost(QHostAddress::LocalHost, 2323);
 }
 
 void Client::login(QString &name, QString &pass)
@@ -45,4 +46,20 @@ void Client::slotReadyRead()
 {
     QDataStream in;
     in.setVersion(QDataStream::Qt_6_6);
+}
+
+void Client::onError(QAbstractSocket::SocketError socketError)
+{
+    switch (socketError) {
+    case QAbstractSocket::RemoteHostClosedError:
+        break;
+    case QAbstractSocket::HostNotFoundError:
+        qDebug()<<"Error, The host was not found";
+        break;
+    case QAbstractSocket::ConnectionRefusedError:
+        qDebug()<<"Error, The connection was refused by the peer.";
+        break;
+    default:
+        qDebug()<<"Error, The following error occurred: "<<m_pSocket->errorString();
+    }
 }

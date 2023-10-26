@@ -3,9 +3,17 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Effects
 import QtQuick.Shapes
+import TowerBackend
+
+
 
 Rectangle {
     id:rootloginArea
+
+    GuiBackend
+    {
+        id:backend
+    }
 
     function clearTextLoginArea() {
         userLogin.clear()
@@ -132,7 +140,7 @@ Rectangle {
         anchors.top: userPassword.bottom
         anchors.topMargin: 30
         height: loginPage.height * 0.05
-        onClicked: loginArea.buttonClicked()
+        onClicked: backend.onLoginButtonClicked(userLogin.text, userPassword.text)
 
         //background: Rectangle {
         //    id:loginBtn

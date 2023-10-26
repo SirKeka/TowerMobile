@@ -10,8 +10,7 @@ public:
     Client();
 
 private:
-    QTcpSocket *m_pSocket;
-    QByteArray m_Data;
+    QTcpSocket* m_pSocket;
     enum class e_MsgType
     {
         text =0,
@@ -23,12 +22,13 @@ private:
     void sendToServer(e_MsgType msgType=e_MsgType::text, QVariantList Data = QVariantList());
 
 public:
-    void connectToServer(QString& hostName, qint16 port);
+    void connectToServer(QHostAddress hostName, qint16 port);
     void login(QString& name, QString& pass);
     void logout();
 
 public slots:
     void slotReadyRead();
+    void onError(QAbstractSocket::SocketError socketError);
 };
 
 #endif // CLIENT_H

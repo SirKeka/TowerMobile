@@ -10,6 +10,8 @@ CppApplication {
         "RounImg.fsh",
         "client.cpp",
         "client.h",
+        "guibackend.cpp",
+        "guibackend.h",
         "main.cpp",
     ]
 

@@ -1,12 +1,14 @@
 #include <QGuiApplication>
+#include <QQmlContext>
 #include <QQmlApplicationEngine>
 
+#include "guibackend.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
-
     QQmlApplicationEngine engine;
+    qmlRegisterType<GuiBackend>("TowerBackend", 1, 0, "GuiBackend");
     const QUrl url(u"qrc:/TowerMageMobile/Main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
         &app, []() { QCoreApplication::exit(-1); },
