@@ -26,7 +26,7 @@ void Client::sendToServer(e_MsgType msgType, QVariantList input)
 
 void Client::connectToServer(QHostAddress hostName, qint16 port)
 {
-    m_pSocket->connectToHost(QHostAddress::LocalHost, 2323);
+    m_pSocket->connectToHost(hostName, 2323);
 }
 
 void Client::login(QString &name, QString &pass)
@@ -40,6 +40,16 @@ void Client::login(QString &name, QString &pass)
 void Client::logout()
 {
     sendToServer(e_MsgType::logoutRequest);
+}
+
+void Client::reg(QString &name, QString &birthDate, QString &login, QString &pass)
+{
+    QVariantList registerInfo;
+    registerInfo.append(name);
+    registerInfo.append(birthDate);
+    registerInfo.append(login);
+    registerInfo.append(pass);
+    sendToServer(e_MsgType::registrationRequest, registerInfo);
 }
 
 void Client::slotReadyRead()

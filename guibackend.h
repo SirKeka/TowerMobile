@@ -17,7 +17,7 @@ private:
 
 public slots:
     void onLoginButtonClicked(QString login, QString password);
-
+    void onRegisterButtonClicked(QString name, QString birthDate, QString login, QString pass);
 signals:
 };
 

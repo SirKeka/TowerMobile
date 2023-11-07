@@ -3,9 +3,16 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Effects
 import QtQuick.Shapes
+import TowerBackend
 
 Rectangle {
     id: regisrationArea
+
+    GuiBackend
+    {
+        id:backend
+    }
+
     function clearTextRegisrationArea() {
         userName.clear()
         userData.clear()
@@ -88,7 +95,7 @@ Rectangle {
         verticalAlignment: Text.AlignVCenter
         font.pointSize: loginPage.height * 0.02
         placeholderText: qsTr("Введите дату рождения ДД.ММ")
-        inputMask: userData.focus ? "##.##" : null
+        //inputMask: userData.focus ? "##.##" : null
         background: Rectangle {
             anchors.fill: parent
             color: "white"
@@ -218,7 +225,7 @@ Rectangle {
         anchors.top: rUserPassword2.bottom
         anchors.topMargin: 10
         height: loginPage.height * 0.05
-        onClicked: regisrationArea.buttonClicked()
+        onClicked: backend.onRegisterButtonClicked(userName.text, userData.text, rUserLogin.text, rUserPassword1.text)
         //background: Rectangle {
         //    id:loginBtn
         //    width: parent.width

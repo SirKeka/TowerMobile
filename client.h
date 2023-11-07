@@ -25,6 +25,7 @@ public:
     void connectToServer(QHostAddress hostName, qint16 port);
     void login(QString& name, QString& pass);
     void logout();
+    void reg(QString &name, QString &BirthDate, QString &login, QString &pass);
 
 public slots:
     void slotReadyRead();
