@@ -11,7 +11,7 @@ public:
 
 private:
     QTcpSocket* m_pSocket;
-    enum class e_MsgType
+    enum class e_ClientMsgType
     {
         text =0,
         loginRequest=1,
@@ -19,7 +19,19 @@ private:
         registrationRequest=3
     };
 
-    void sendToServer(e_MsgType msgType=e_MsgType::text, QVariantList Data = QVariantList());
+    enum class e_ServerMsgType                        //тип сообщения и команды
+    {
+        text =0,
+        loginSucsessful=1,
+        loginDenied=2,
+        logoutSucsessful=3,
+        logoutDenied=4,
+        registrationSucsessful=5,
+        registrationDenied=6
+    };
+
+    void sendToServer(e_ClientMsgType msgType, QVariantList);
+    void sendToServer(e_ClientMsgType msgType);
 
 public:
     void connectToServer(QHostAddress hostName, qint16 port);
