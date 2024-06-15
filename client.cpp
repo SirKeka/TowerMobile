@@ -112,10 +112,12 @@ void Client::slotReadyRead()
                 break;
             case e_ServerMsgType::registrationSucsessful:
             {
+                qDebug()<<"Registration Sucsessful. User Added";
             }
                 break;
             case e_ServerMsgType::registrationDenied:
             {
+                qDebug()<<"Registration Denied. Database Error";
             }
                 break;
             default:
