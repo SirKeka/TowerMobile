@@ -96,10 +96,12 @@ void Client::slotReadyRead()
                 break;
             case e_ServerMsgType::loginSucsessful:
             {
+                qDebug()<<"login Sucsessful. User online";
             }
                 break;
             case e_ServerMsgType::loginDenied:
             {
+                qDebug()<<"login Denied. User offline";
             }
                 break;
             case e_ServerMsgType::logoutSucsessful:
